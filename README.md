@@ -39,6 +39,6 @@ Please open an issue for support.
 Make a PR if you are interested to contribute.
 
 ## Acknowledgement
-After I developed this SDK, I chanced upon a [repository](https://github.com/fivehealth/formsg-python-sdk) written by skylander86 to solve the exact same problem in Oct 2021. However, it did not support attachment decryption then which mine did. I eventually open-sourced mine in Jan 2022 when I had time.
+After I developed this SDK in Oct 2021, I chanced upon a [repository](https://github.com/fivehealth/formsg-python-sdk) written by skylander86 to solve the exact same problem in Nov 2021. However, it did not support attachment decryption then which mine did. I eventually open-sourced mine in Jan 2022 when I had time.
 
 I did learn from the way he structured his codes as it is my first time open-sourcing a project. Evidently, the logic is completely different.
