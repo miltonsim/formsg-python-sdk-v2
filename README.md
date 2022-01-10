@@ -1,5 +1,7 @@
 # FormSG Python SDK v2
 
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fmiltonsim%2Fformsg-python-sdk-v2&count_bg=%2379C83D&title_bg=%23555555&icon=snapcraft.svg&icon_color=%23E7E7E7&title=Views&edge_flat=false)](https://hits.seeyoufarm.com)
+
 This library was created during my stint at MOH where I had to automate the processing of FormSG forms after they were filled up. The official FormSG SDK is only written in JavaScript and Node.JS.
 
 ## Table of Contents
