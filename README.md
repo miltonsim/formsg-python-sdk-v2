@@ -18,7 +18,7 @@ This library was created during my stint at MOH where I had to automate the proc
 
 These are my plans to improve this repository
 - Add comments and logging for easier readability and troubleshooting 
-- Verifying FormSG Header Signatures
+- Verifying FormSG Header Signatures &#9745;
 - Create Medium article to explain the codes in detail
 - Improve README.md
 
@@ -28,6 +28,11 @@ Clone the repository
 
 ```sh
 git clone https://github.com/miltonsim/formsg-python-sdk-v2
+
+# This Private Key is private and unique to your Form
+export FORMSG_SECRET_KEY=your-formsg-secret-key
+# This Public Key may be subject to change, please check out the official FormSG Javascript SDK for the latest Public Key
+export FORMSG_PUBLIC_KEY=3Tt8VduXsjjd4IrpdCd7BAkdZl/vUCstu9UvTX84FWw=
 ```
 
 Set your FormSG secret in the environment 

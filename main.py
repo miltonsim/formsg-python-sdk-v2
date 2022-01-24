@@ -9,6 +9,7 @@ app = Flask(__name__)
 logging.basicConfig(level=logging.INFO)
 
 FORMSG_SECRET_KEY = os.environ['FORMSG_SECRET_KEY']
+FORMSG_PUBLIC_KEY = os.environ['FORMSG_PUBLIC_KEY']
  
 @app.route('/')
 def index():
@@ -18,11 +19,14 @@ def index():
 def formsg_webhook():
     time_now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     logging.info('FormSG Webhook received at %s', time_now)
-    
+
     clear_text_data = decrypt_form(
         request,        
         secret_key=FORMSG_SECRET_KEY,
-        has_attachments=True
+        public_key=FORMSG_PUBLIC_KEY,
+        has_attachments=True,
+        # An example would be https://681f-49-245-107-157.ngrok.io/formsg_webhook
+        api_href='your-api-href'
     )
 
     logging.info('FormSG Webhook cleartext data is %s', clear_text_data)

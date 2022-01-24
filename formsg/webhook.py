@@ -1,12 +1,16 @@
 from nacl.public import PrivateKey, PublicKey, Box
 from nacl.encoding import Base64Encoder
+from nacl.signing import VerifyKey
 import requests
 import base64
 import json
 import logging
 import os
+import re
 
-def decrypt_form(request, secret_key, has_attachments):
+def decrypt_form(request, secret_key, public_key, has_attachments, api_href):
+    verify_signature(request, public_key, api_href)
+
     request_body_json = request.get_json()
 
     logging.info('Request body %s', request_body_json)
@@ -87,3 +91,26 @@ def create_folders_to_store_files(submission_id, question_id):
         os.mkdir(file_storage_directory) 
 
     return file_storage_directory
+
+def verify_signature(request, public_key, api_href):
+    x_formsg_signature = request.headers.get('X-Formsg-Signature')
+    logging.info('X-Formsg-Signature %s', x_formsg_signature)
+
+    timestamp, submission_id, form_id, signature_scheme = x_formsg_signature.split(',')
+    
+    timestamp = re.search(r'(?<==).*$', timestamp).group()
+    submission_id = re.search(r'(?<==).*$', submission_id).group()
+    form_id = re.search(r'(?<==).*$', form_id).group()
+    signature_scheme = re.search(r'(?<==).*$', signature_scheme).group()
+
+    base_string = f'{api_href}.{submission_id}.{form_id}.{timestamp}'
+
+    base_string_base64 = base64.b64encode(bytes(base_string, 'utf-8'))
+
+    public_key_base64 = bytes(public_key, 'utf-8')
+
+    verify_key = VerifyKey(public_key_base64, encoder=Base64Encoder)
+
+    signature_bytes = Base64Encoder.decode(signature_scheme)
+    verify_key.verify(base_string_base64, signature_bytes,
+                    encoder=Base64Encoder)
