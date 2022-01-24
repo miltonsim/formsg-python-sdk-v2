@@ -21,6 +21,7 @@ These are my plans to improve this repository
 - Verifying FormSG Header Signatures &#9745;
 - Create Medium article to explain the codes in detail
 - Improve README.md
+- Add a layer of check to ensure the correct Form is being submitted to API
 
 ## Usage
 
